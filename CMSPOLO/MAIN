@@ -1,0 +1,13 @@
+import tkinter as tk
+import CONTROLLER
+import VIEW
+
+
+def main():
+    root = tk.Tk()
+    controller = CONTROLLER.AppController()
+    app = VIEW.AppView(root, controller)
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()

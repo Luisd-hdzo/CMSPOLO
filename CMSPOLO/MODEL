@@ -1,0 +1,70 @@
+import pandas as pd
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Table
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, sessionmaker
+
+# Configuración de la base de datos en memoria
+engine = create_engine('sqlite:///:memory:')
+Base = declarative_base()
+
+# Tabla intermedia para las relaciones muchos a muchos entre personas
+association_table = Table('association', Base.metadata,
+    Column('person_id', Integer, ForeignKey('person.id')),
+    Column('related_person_id', Integer, ForeignKey('person.id'))
+)
+
+# Definición de los modelos
+class Person(Base):
+    __tablename__ = 'person'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    events = relationship('Event', back_populates='organizer')
+    relationships = relationship(
+        'Person',
+        secondary=association_table,
+        primaryjoin=id == association_table.c.person_id,
+        secondaryjoin=id == association_table.c.related_person_id,
+        back_populates='relationships'
+    )
+
+class Event(Base):
+    __tablename__ = 'event'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    organizer_id = Column(Integer, ForeignKey('person.id'))
+    organizer = relationship('Person', back_populates='events')
+
+# Crear las tablas en la base de datos
+Base.metadata.create_all(engine)
+
+# Crear una sesión
+Session = sessionmaker(bind=engine)
+session = Session()
+
+def agregar_persona(nombre):
+    nueva_persona = Person(name=nombre)
+    session.add(nueva_persona)
+    session.commit()
+
+def agregar_evento(nombre_evento, nombre_organizador):
+    organizador = session.query(Person).filter_by(name=nombre_organizador).first()
+    if organizador:
+        nuevo_evento = Event(name=nombre_evento, organizer=organizador)
+        session.add(nuevo_evento)
+        session.commit()
+
+def agregar_relacion(nombre1, nombre2):
+    persona1 = session.query(Person).filter_by(name=nombre1).first()
+    persona2 = session.query(Person).filter_by(name=nombre2).first()
+    if persona1 and persona2:
+        persona1.relationships.append(persona2)
+        session.commit()
+
+def buscar_relaciones(nombre):
+    persona = session.query(Person).filter_by(name=nombre).first()
+    if persona:
+        relaciones = [relacion.name for relacion in persona.relationships]
+        eventos = [evento.name for evento in persona.events]
+        return {'relaciones': relaciones, 'eventos': eventos}
+    else:
+        return None
