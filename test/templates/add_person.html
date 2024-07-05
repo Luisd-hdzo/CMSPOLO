@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Agregar Persona</h2>
+    <form method="post">
+        <input type="text" id="name" name="name" class="form-control" placeholder="Nombre" required>
+        <input type="text" id="address" name="address" class="form-control" placeholder="Domicilio">
+        <input type="text" id="phone" name="phone" class="form-control" placeholder="Teléfono">
+        <input type="text" id="job" name="job" class="form-control" placeholder="Trabajo">
+        <input type="text" id="vehicle" name="vehicle" class="form-control" placeholder="Vehículo">
+        <input type="text" id="house_color" name="house_color" class="form-control" placeholder="Color de casa">
+        <input type="text" id="favorite_food" name="favorite_food" class="form-control" placeholder="Comida favorita">
+        <input type="date" id="birthdate" name="birthdate" class="form-control" placeholder="Fecha de nacimiento">
+        <textarea id="purchase_history" name="purchase_history" class="form-control" rows="3" placeholder="Historial de compras"></textarea>
+        <input type="text" id="gender" name="gender" class="form-control" placeholder="Género">
+        <input type="text" id="facebook" name="facebook" class="form-control" placeholder="Facebook">
+        <input type="text" id="twitter" name="twitter" class="form-control" placeholder="Twitter">
+        <input type="text" id="instagram" name="instagram" class="form-control" placeholder="Instagram">
+        <button type="submit">Agregar</button>
+    </form>
+{% endblock %}

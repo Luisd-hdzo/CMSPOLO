@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Buscar</h2>
+    <form method="post">
+        <input type="text" id="search_term" name="search_term" class="form-control" placeholder="Ingrese el término de búsqueda (nombre, fecha YYYY-MM-DD)">
+        <button type="submit">Buscar</button>
+    </form>
+    
+    {% if events %}
+        <h3>Resultados de Búsqueda</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Evento</th>
+                    <th>Organizador</th>
+                    <th>Fecha</th>
+                    <th>Asistentes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                    <tr>
+                        <td>{{ event.event_name }}</td>
+                        <td>{{ event.organizer_name }}</td>
+                        <td>{{ event.date }}</td>
+                        <td>
+                            <ul>
+                                {% for person in event.attendees %}
+                                    <li>{{ person.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

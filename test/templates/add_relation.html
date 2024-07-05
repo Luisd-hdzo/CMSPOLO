@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2 class="mt-4">Agregar Relación</h2>
+    <form method="post">
+        <div class="form-group">
+            <label for="person1_name">Persona 1</label>
+            <input type="text" class="form-control" id="person1_name" name="person1_name" placeholder="Ingrese el nombre de la persona 1">
+        </div>
+        <div class="form-group">
+            <label for="person2_name">Persona 2</label>
+            <input type="text" class="form-control" id="person2_name" name="person2_name" placeholder="Ingrese el nombre de la persona 2">
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Agregar Evento</h2>
+    <form method="post">
+        <input type="text" id="event_name" name="event_name" class="form-control" placeholder="Nombre del evento" required>
+        <input type="text" id="organizer_name" name="organizer_name" class="form-control" placeholder="Nombre del organizador" required>
+        <input type="date" id="date" name="date" class="form-control" required>
+        <label for="attendees">Asistentes (un nombre por línea):</label>
+        <textarea id="attendees" name="attendees" class="form-control" rows="5" placeholder="Ingrese los nombres de los asistentes, uno por línea" required></textarea>
+        <button type="submit">Agregar</button>
+    </form>
+{% endblock %}
