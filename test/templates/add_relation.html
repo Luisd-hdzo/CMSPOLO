@@ -1,16 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2 class="mt-4">Agregar Relación</h2>
+    <h2>Agregar Relación</h2>
     <form method="post">
         <div class="form-group">
-            <label for="person1_name">Persona 1</label>
-            <input type="text" class="form-control" id="person1_name" name="person1_name" placeholder="Ingrese el nombre de la persona 1">
+            <label for="person1">Persona 1</label>
+            <select class="form-control" id="person1" name="person1_id" required>
+                {% for person in persons %}
+                    <option value="{{ person.id }}">{{ person.name }}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="form-group">
-            <label for="person2_name">Persona 2</label>
-            <input type="text" class="form-control" id="person2_name" name="person2_name" placeholder="Ingrese el nombre de la persona 2">
+            <label for="person2">Persona 2</label>
+            <select class="form-control" id="person2" name="person2_id" required>
+                {% for person in persons %}
+                    <option value="{{ person.id }}">{{ person.name }}</option>
+                {% endfor %}
+            </select>
         </div>
-        <button type="submit" class="btn btn-primary">Agregar</button>
+        <button type="submit" class="btn btn-primary">Agregar Relación</button>
     </form>
 {% endblock %}

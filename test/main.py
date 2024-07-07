@@ -9,13 +9,11 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# Tabla intermedia para la relación Many-to-Many entre Person y Event
 attendees = db.Table('attendees',
     db.Column('person_id', db.Integer, db.ForeignKey('person.id'), primary_key=True),
     db.Column('event_id', db.Integer, db.ForeignKey('event.id'), primary_key=True)
 )
 
-# Modelos de Base de Datos
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -45,7 +43,6 @@ class Relation(db.Model):
     person1_name = db.Column(db.String(100), nullable=False)
     person2_name = db.Column(db.String(100), nullable=False)
 
-# Rutas y Controladores
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -139,21 +136,45 @@ def add_relation():
 def search():
     if request.method == 'POST':
         search_term = request.form['search_term']
+        search_term_date = None
         try:
-            date_obj = datetime.strptime(search_term, '%Y-%m-%d').date()
-            events = Event.query.filter_by(date=date_obj).all()
+            search_term_date = datetime.strptime(search_term, '%Y-%m-%d').date()
         except ValueError:
-            events = Event.query.filter(
-                Event.event_name.ilike(f'%{search_term}%') |
-                Event.organizer_name.ilike(f'%{search_term}%')
-            ).all()
-            persons = Person.query.filter(Person.name.ilike(f'%{search_term}%')).all()
-            events += [event for person in persons for event in person.events]
+            pass
 
-        return render_template('search.html', events=events)
+        events = Event.query.filter(
+            (Event.event_name.ilike(f'%{search_term}%')) |
+            (Event.organizer_name.ilike(f'%{search_term}%')) |
+            (Event.date == search_term_date)
+        ).all()
+
+        persons = Person.query.filter(
+            (Person.name.ilike(f'%{search_term}%')) |
+            (Person.address.ilike(f'%{search_term}%')) |
+            (Person.phone.ilike(f'%{search_term}%')) |
+            (Person.job.ilike(f'%{search_term}%')) |
+            (Person.vehicle.ilike(f'%{search_term}%')) |
+            (Person.house_color.ilike(f'%{search_term}%')) |
+            (Person.favorite_food.ilike(f'%{search_term}%')) |
+            (Person.purchase_history.ilike(f'%{search_term}%')) |
+            (Person.gender.ilike(f'%{search_term}%')) |
+            (Person.facebook.ilike(f'%{search_term}%')) |
+            (Person.twitter.ilike(f'%{search_term}%')) |
+            (Person.instagram.ilike(f'%{search_term}%')) |
+            (Person.birthdate == search_term_date)
+        ).all()
+
+        # Añadir eventos relacionados a las personas encontradas
+        for person in persons:
+            events += person.events
+
+        # Remover duplicados de eventos
+        events = list(set(events))
+
+        return render_template('search.html', events=events, persons=persons)
     return render_template('search.html')
 
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True,host='0.0.0.0')
+    app.run(debug=True)

@@ -1,39 +1,84 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Buscar</h2>
+    <h2>Búsqueda</h2>
     <form method="post">
-        <input type="text" id="search_term" name="search_term" class="form-control" placeholder="Ingrese el término de búsqueda (nombre, fecha YYYY-MM-DD)">
-        <button type="submit">Buscar</button>
+        <div class="form-group">
+            <label for="search_term">Término de Búsqueda</label>
+            <input type="text" class="form-control" id="search_term" name="search_term" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Buscar</button>
     </form>
-    
-    {% if events %}
-        <h3>Resultados de Búsqueda</h3>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Evento</th>
-                    <th>Organizador</th>
-                    <th>Fecha</th>
-                    <th>Asistentes</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for event in events %}
+
+    {% if results %}
+        <h3>Resultados</h3>
+        {% if persons %}
+            <h4>Personas</h4>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>{{ event.event_name }}</td>
-                        <td>{{ event.organizer_name }}</td>
-                        <td>{{ event.date }}</td>
-                        <td>
-                            <ul>
-                                {% for person in event.attendees %}
-                                    <li>{{ person.name }}</li>
-                                {% endfor %}
-                            </ul>
-                        </td>
+                        <th>Nombre</th>
+                        <th>Domicilio</th>
+                        <th>Teléfono</th>
+                        <th>Trabajo</th>
+                        <th>Vehículo</th>
+                        <th>Color de Casa</th>
+                        <th>Comida Favorita</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Historial de Compras</th>
+                        <th>Género</th>
+                        <th>Facebook</th>
+                        <th>Twitter</th>
+                        <th>Instagram</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for person in persons %}
+                        <tr>
+                            <td>{{ person.name }}</td>
+                            <td>{{ person.address }}</td>
+                            <td>{{ person.phone }}</td>
+                            <td>{{ person.job }}</td>
+                            <td>{{ person.vehicle }}</td>
+                            <td>{{ person.house_color }}</td>
+                            <td>{{ person.favorite_food }}</td>
+                            <td>{{ person.birthdate }}</td>
+                            <td>{{ person.purchase_history }}</td>
+                            <td>{{ person.gender }}</td>
+                            <td>{{ person.facebook }}</td>
+                            <td>{{ person.twitter }}</td>
+                            <td>{{ person.instagram }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        {% if events %}
+            <h4>Eventos</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre del Evento</th>
+                        <th>Organizador</th>
+                        <th>Fecha</th>
+                        <th>Asistentes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for event in events %}
+                        <tr>
+                            <td>{{ event.event_name }}</td>
+                            <td>{{ event.organizer_name }}</td>
+                            <td>{{ event.date }}</td>
+                            <td>
+                                {% for attendee in event.attendees %}
+                                    {{ attendee.name }}<br>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
     {% endif %}
 {% endblock %}
