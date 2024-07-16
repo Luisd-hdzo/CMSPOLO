@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Parisienne&display=swap"
+        rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación de Boda</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/stylesheet.css') }}">
+    <!-- <script src="{{ url_for('static',filename='JS/form.js') }}" defer></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="{{ url_for('static',filename='JS/app.js') }}" defer></script>
+    <script>
+        function toggleMenu() {
+            var ul = document.getElementById("ul");
+            var container = document.getElementById("container");
+            var menuIcon = document.querySelector(".menu-icon");
+            var nav = document.getElementById("nav");
+            nav.classList.toggle("on");
+            ul.classList.toggle("open");
+            container.classList.toggle("active");
+            menu.classList.toggle("set");
+           
+        }
+    </script>
+    <script>
+        function closeMenu() { 
+            menu.classList.toggle("set");
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <div class="menu-icon"  id="menu-icon" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <nav class="nav" id="nav">
+            <ul id="ul" onclick="closeMenu()">
+                <li><a href="#itinerario" onclick="toggleMenu()">Itinerario</a></li>
+                <li><a href="#galeria" onclick="toggleMenu()">Galería de fotos</a></li>
+                <li><a href="#hospedaje" onclick="toggleMenu()">Hospedaje</a></li>
+                <li><a href="#salonesdebelleza" onclick="toggleMenu()">Salones de belleza</a></li>
+                <li><a href="#gastronomia" onclick="toggleMenu()">Gastronomía</a></li>
+                <li><a href="#mesaderegalo" onclick="toggleMenu()">Mesa de regalo</a></li>
+                <li><a href="#rsvp" onclick="toggleMenu()">RSVP</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="hero">
+        <img src="{{ url_for('static',filename='img/foto album6.jpg') }}" alt="Lizeth y Leopoldo" class="hero-image">
+        <div class="hero-text">
+            <h1>Lizeth y Leopoldo</h1>
+            <p>23.11.2024</p>
+        </div>
+    </div>
+    <div class="section white-background">
+        <h2>Con la bendición de Dios y nuestras familias</h2>
+        <div class="horario">
+            <p>Tenemos el honor de invitarlos a celebrar nuestro matrimonio el día:</p><br />
+            <p>Sábado 23 de Noviembre de 2024</p><br />
+            <div class="religiosa">
+                <p>Ceremonia Religiosa / 17:30 hrs.</p>
+                <div class="lugar">
+                    <p>Parroquia y Santuario de Nuestra Señora de Fátima</p><br />
+                </div>
+            </div>
+            <div class="recepcion">
+                <p>Recepción / 20:00 hrs.</p>
+                <div class="lugar">
+                    <p>Escuela Superior de Música y Danza de Monterrey</p><br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="photo-gallery" id="galeria">
+        <img src="{{ url_for('static',filename='img/foto album1.jpg') }}" alt="Lizeth y Leopoldo">
+        <img src="{{ url_for('static',filename='img/foto album6.jpg') }}" alt="Lizeth y Leopoldo">
+        <div class="photo-gallery">
+            <img src="{{ url_for('static',filename='img/foto album3.jpg') }}" alt="Lizeth y Leopoldo">
+            <img src="{{ url_for('static',filename='img/foto album4.jpg') }}" alt="Lizeth y Leopoldo">
+        </div>
+        <img src="{{ url_for('static',filename='img/foto album2.jpg') }}" alt="Lizeth y Leopoldo">
+        <div class="photo-gallery">
+            <img src="{{ url_for('static',filename='img/foto album5.jpg') }}" alt="Lizeth y Leopoldo">
+        </div>
+    </div>
+    <div class="comoLlegar" id="itinerario">
+        <div class="comoLlegarArea">
+            <div class="comoLlegar-box">
+                <img class="icono" src="{{ url_for('static',filename='img/fatima.jpeg') }}" alt="Church"><br />
+                <p>CEREMONIA RELIGIOSA</p>
+                <p>Parroquia y Santuario de Nuestra Senora de Fatima</p>
+                <p>17:30 Hrs.</p>
+                <br />
+                <button class="botonComoLlegar">
+                    <a href="#map iglesia">Como llegar</a>
+                </button>
+            </div>
+
+            <div class="comoLlegar-box">
+                <img class="icono" src="{{ url_for('static',filename='img/danza.jpg') }}" alt="Church"><br />
+                <p>RECEPCION</p>
+                <p>Escuela Superior de Musica y Danza de Monterrey</p>
+                <p>20:00 Hrs.</p>
+                <br />
+                <button class="botonComoLlegar">
+                    <a href="#map recepcion">Como llegar</a></button>
+            </div>
+        </div>
+    </div>
+    <div class="areaContador">
+        <img src="{{ url_for('static',filename='img/foto album5.jpg') }}" alt="Lizeth y Leopoldo" class="banner" </div>
+        <div class="contador">
+            <h1>Nos vemos en</h1>
+            <div class="numeros">
+                <p id="dias"></p>
+            </div><br />
+            <div class="unidades">
+                <p>Dias</p>
+            </div>
+        </div>
+    </div>
+    <div class="areaRegalos" id="mesaderegalo">
+        <div class="regalos-box">
+            <img class="icono" src="{{ url_for('static',filename='img/gift.svg') }}" alt="Church"><br />
+            <h1>MESA DE REGALOS</h1>
+            <button class="botonComoLlegar">
+                <a href="https://www.zola.com/registry/lizethandleopoldo">Ir a la mesa</a>
+            </button>
+        </div>
+    </div>
+    <div class="form-container-area" id="rsvp">
+        <div class="form-container">
+            <h2>Confirmar Asistencia</h2>
+            <form id="rsvp-form" method="POST" action="{{ url_for('submit') }}">
+                <label for="fullName">Nombre Completo:</label><br>
+                <input type="text" id="fullName" name="fullName" required><br><br>
+                <label for="attendance">¿Asistirás al evento?</label><br>
+                <select id="attendance" name="attendance" required>
+                    <option value="Sí">Sí</option>
+                    <option value="No">No</option>
+                </select><br><br>
+                <label for="contact">Contacto:</label><br>
+                <input type="text" id="contact" name="contact" required><br><br>
+                <label for="specialMenu">¿Necesitas menú especial?</label><br>
+                <select id="specialMenu" name="specialMenu" required>
+                    <option value="No">No</option>
+                    <option value="Vegetariano">Vegetariano</option>
+                    <option value="Vegano">Vegano</option>
+                    <option value="Sin gluten">Sin gluten</option>
+                </select><br><br>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- <div class="maps">
+        <div class="mapArea">
+            <div class="item">
+                <h1>Ceremonia Religiosa</h1>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3596.661227330397!2d-100.37421572309417!3d25.64936681323499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x866297c2a9555555%3A0x1926888214c98f1d!2sParroquia%20y%20Santuario%20de%20Nuestra%20Se%C3%B1ora%20de%20F%C3%A1tima!5e0!3m2!1ses-419!2smx!4v1720562621934!5m2!1ses-419!2smx"
+                    width="fit-content" height="fit-content" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="item">
+                <h1>Recepción</h1>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3595.96885868957!2d-100.34257212309389!3d25.67232701228961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662be214f3de1fd%3A0x9eafd571e7e621d!2sESMDM%20(Escuela%20Superior%20de%20M%C3%BAsica%20y%20Danza%20de%20Monterrey)!5e0!3m2!1ses-419!2smx!4v1720562469325!5m2!1ses-419!2smx"
+                    width="fit-content" height="fit-content" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div> -->
+    <div class="areaRestaurantes" id="gastronomia">
+        <h1>Restaurantes Recomendados</h1>
+        <div class="areaOpciones">
+            <h2>Desayuno/Brunch</h2>
+            <div class="item">
+                <img src="{{ url_for('static',filename='img/cafelaurel.jpg') }}">
+                <br />
+                <p>Cafe Laurel Arboleda / Armida</p>
+                <p> Av. del Roble 660-Local A2-111</p>
+                <p><img src="static\img\instagramicon.png" id="instagramicon"> @cafelaurelmty</p>
+            </div>
+            <div class="item">
+                <img src="{{ url_for('static',filename='img/lazaroydiego.jpg') }}">
+                <br />
+                <p>Lázaro y Diego</p>
+                <p>Metropolitan Center</p>
+                <p>Lázaro Cárdenas 2400 Planta Baja</p>
+                <p><img src="static\img\instagramicon.png" id="instagramicon"> @lazaroydiego</p>
+            </div>
+            <div class="item">
+                <img src="{{ url_for('static',filename='img/edenflorycafe.jpg') }}">
+                <br />
+                <p>⁠Edén Flor y Cafe</p>
+                <p>Carr Nacional km 271</p>
+                <p><img src="static\img\instagramicon.png" id="instagramicon"> eden.florycafe</p>
+            </div>
+
+            <div class="areaOpciones">
+                <h2>Comida/Cena</h2>
+                <div class="item">
+                    <img src="{{ url_for('static',filename='img/senoratanaka.png') }}">
+                    <br />
+                    <p>Señora Tanaka Arboleda</p>
+                    <p>Av. del Roble 660-l-102</p>
+                    <p><img src="static\img\instagramicon.png" id="instagramicon"> @senoratanakamx</p>
+                </div>
+                <div class="item">
+                    <img src="{{ url_for('static',filename='img/campomar.png') }}">
+                    <br />
+                    <p>⁠CampoMar Arboleda</p>
+                    <p>Av. del Roble 535</p>
+                    <p><img src="static\img\instagramicon.png" id="instagramicon"> @campomarmx</p>
+                </div>
+                <div class="item">
+                    <img src="{{ url_for('static',filename='img/tigre.png') }}">
+                    <br />
+                    <p>⁠Tigre Metropolitan Center</p>
+                    <p>Metropolitan Center</p>
+                    <p>Av Lázaro Cárdenas 2400</p>
+                    <p><img src="static\img\instagramicon.png" id="instagramicon"> @tigreasador</p>
+                </div>
+                <div class="item">
+                    <img src="{{ url_for('static',filename='img/sonoraprime.jpg') }}">
+                    <br />
+                    <p>⁠Sonora Prime Metropolitan</p>
+                    <p>Metropolitan Center</p>
+                    <p>Av Lázaro Cárdenas 2400 2ndo Piso</p>
+                    <p><img src="static\img\instagramicon.png" id="instagramicon"> @sonoraprime</p>
+                </div>
+                <div class="item">
+                    <img src="{{ url_for('static',filename='img/barbaro.png') }}">
+                    <br />
+                    <p>Bárbaro Monterrey Highpark</p>
+                    <p>Av. Manuel Gómez Morín 922</p>
+                    <p><img src="static\img\instagramicon.png" id="instagramicon"> @barbaromty</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="areaHoteles" id="hospedaje">
+        <h1>Hoteles Recomendados</h1>
+        <div class="areaOpciones" id="hoteles">
+            <div class="item">
+                <img src="{{ url_for('static',filename='img/jwmarriot.jpg') }}">
+                <br />
+                <p>JW Marriot Valle</p>
+                <p>Av. del Roble 670 </p>
+                <p>Código: Boda Lizeth
+                <p>
+                <p>y Leopoldo</p>
+                <br />
+                <button class="botonOpciones">
+                    <a
+                        href="https://www.marriott.com/event-reservations/reservation-link.mi?id=1706652197862&key=GRP&app=resvlink">Reservar</a>
+                </button>
+            </div>
+            <div class="item">
+                <img src="{{ url_for('static',filename='img/safi valle.jpg') }}">
+                <br />
+                <p>Safi Valle</p>
+                <p>Av. Diego Rivera 555</p>
+                <p> Código: 0CD5</p>
+                <br />
+                <button class="botonOpciones">
+                    <a href="https://reservations.travelclick.com/11908?groupID=4242060">Reservar</a>
+                </button>
+            </div>
+            <div class="item">
+                <img src="{{ url_for('static',filename='img/safiMetropolitan.jpg') }}">
+                <br />
+                <p>Safi Metropolitan</p>
+                <p>Lázaro Cárdenas 2400</p>
+                <p> Código: 0CD5</p>
+                <br />
+                <button class="botonOpciones">
+                    <a href="https://reservations.travelclick.com/114670?groupID=4242027">Reservar</a>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="areaSalones" id="salonesdebelleza">
+        <h1>Salones de Belleza Recomendados</h1>
+        <div class="areaOpciones" id="salones">
+            <div class="item">
+                <img src="{{ url_for('static',filename='img/losartistas.jpg') }}">
+                <br />
+                <p>Los Artistas</p>
+                <p>Av. José Vasconcelos 345-L-116 </p>
+                <p><img src="static\img\whatsicon.png" id="instagramicon"> 8188058164</p>
+                <p><img src="static\img\instagramicon.png" id="instagramicon"> @los_artistas</p>
+
+            </div>
+            <div class="item">
+                <img src="{{ url_for('static',filename='img/signature.png') }}">
+                <br />
+                <p>Signature Monterrey</p>
+                <p>Río Vístula 337- 2, Plaza Vendome</p>
+                <p><img src="static\img\whatsicon.png" id="instagramicon"> 8115609987</p>
+                <p><img src="static\img\instagramicon.png" id="instagramicon"> @signaturemty </p><br /><br />
+            </div>
+            <div class="item">
+                <img src="{{ url_for('static',filename='img/believe.png') }}">
+                <br />
+                <p>Believe by Tere</p>
+                <p> Río Guadalquivir 225-Ote.</p>
+                <p><img src="static\img\instagramicon.png" id="instagramicon"> @believebytere</p><br /><br />
+            </div>
+            <div class="item">
+                <img src="{{ url_for('static',filename='img/ponteguapa.jpg') }}">
+                <br />
+                <p>Ponte Guapa</p>
+                <p>Rio Missouri. 555 L-S04A</p>
+                <p><img src="static\img\whatsicon.png" id="instagramicon"> 8114708695
+                <p><img src="static\img\instagramicon.png" id="instagramicon"> @ponteguapamx </p>
+
+            </div>
+            <div class="item">
+                <img src="{{ url_for('static',filename='img/ladona.png') }}">
+                <br />
+                <p>La Dona</p>
+                <p>Av Bosques del Valle 111</p>
+                <p><img src="static\img\whatsicon.png" id="instagramicon"> 8183565269</p>
+                <p><img src="static\img\instagramicon.png" id="instagramicon"> @ladonabeautycenter</p><br /><br />
+            </div>
+            <div class="item">
+                <img src="{{ url_for('static',filename='img/mariabonita.png') }}">
+                <br />
+                <p>Maria Bonita</p>
+                <p>San Lorenzo 101</p>
+                <p><img src="static\img\whatsicon.png" id="instagramicon"> 8119715626</p>
+                <p><img src="static\img\instagramicon.png" id="instagramicon"> @mariabonitamty </p><br /><br />
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,755 @@
+@font-face {
+    font-family: Citadel;
+    font-style: normal;
+    font-weight: 400;
+    src:
+        url("fonts/CitadelScriptStd.woff") format("woff"),
+        url("fonts/CitadelScriptStd.woff") format("woff2");
+}
+
+
+body {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #f8f8f8;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #d3b292;
+    height: fit-content;
+    width: 100%;
+    z-index: 2;
+}
+
+.menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+.nav {
+    display: flex;
+
+}
+
+
+.nav li {
+    padding: 10px;
+}
+
+.nav li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.nav ul{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+/*inicio*/
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-text {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 4.5em;
+    letter-spacing: 20px;
+}
+
+.hero-text h1 {
+    margin: 0;
+    font-family: Citadel, sans-serif;
+}
+
+.hero-text p {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+/*invitacion*/
+.section {
+    padding: 50px 10px;
+    text-align: center;
+    font-size: 3em;
+}
+
+.white-background {
+    height: fit-content;
+    margin-top: 3%;
+    margin-bottom: 5%;
+    color: #d3b292;
+}
+
+.horario {
+    margin-top: 15%;
+
+}
+
+.lugar {
+    font-style: italic;
+}
+
+.photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    justify-content: center;
+}
+
+.photo-gallery img {
+    margin: 10px;
+    max-width: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+/*Como llegar al evento*/
+.comoLlegar {
+    background-color: rgb(99, 74, 74);
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    color: #f8f8f8;
+    justify-content: center;
+}
+
+.comoLlegarArea {
+    margin-bottom: 3%;
+    margin-left: 4%;
+    margin-top: 1%;
+
+}
+
+.comoLlegar-box {
+    border-style: solid;
+    border-color: #fff;
+    border-width: 2px;
+    height: fit-content;
+    width: 90%;
+    text-align: center;
+    margin-top: 3%;
+    margin-bottom: -1%;
+    font-size: xx-large;
+}
+
+.icono {
+    margin-top: 1%;
+    max-width: 450px;
+}
+
+.botonComoLlegar {
+    background-color: #D3B292;
+    border: none;
+    font-size: larger;
+    color: #f8f8f8;
+    padding: 2%;
+    margin-bottom: 2%;
+
+}
+
+.botonComoLlegar a {
+    color: white;
+    text-decoration: none;
+}
+
+.botonComoLlegar:hover {
+    background-color: #c0984f;
+}
+
+/*cuantos dias falta*/
+.areaContador {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    object-fit: cover;
+    overflow: hidden;
+    padding-top: 10%;
+
+}
+
+.banner {
+    transform: scale(3) translate(0, 5%);
+    margin-top: -20%;
+
+}
+
+.contador {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    width: 50%;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #f8f8f8;
+}
+
+.contador h1 {
+    font-style: italic;
+    font-size: 4em;
+}
+
+.numeros {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 10em;
+}
+
+.unidades {
+    align-items: center;
+    font-size: 4em;
+}
+
+.unidades p {
+    font-style: italic;
+    margin-right: 5%;
+}
+
+/*mesa de Regalos*/
+.areaRegalos {
+    position: relative;
+    background-color: rgb(99, 74, 74);
+    height: 100vh;
+    color: #f8f8f8;
+}
+
+.regalos-box {
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: column;
+    align-items: center;
+    font-size: xx-large;
+    padding-top: 10%;
+}
+
+.botonRegalos {
+    display: block;
+    width: 10%;
+    padding: 10%;
+    background-color: #d3b292;
+    color: #f8f8f8;
+    border: solid;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: medium;
+}
+
+/*forma de asistencia*/
+.form-container-area {
+    background-color: #f8f8f8;
+    height: fit-content;
+}
+
+.form-container {
+    background-color: #f8f8f8;
+    padding: 20px;
+    margin: 10% auto;
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    font-size: 5em;
+    color: #d3b292;
+    text-align: center;
+}
+
+.form-container label {
+    font-size: 2em;
+    color: #d3b292;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-container input,
+.form-container select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-container button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #d3b292;
+    color: #f8f8f8;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-container button:hover {
+    background-color: rgb(99, 74, 74);
+}
+
+/*mapas*/
+.maps {
+    background-color: #d3b292;
+    font-size: xx-large;
+    height: fit-content;
+    color: rgb(99, 74, 74);
+
+}
+
+.mapArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5%;
+
+}
+
+/*Sugerencias*/
+.areaRestaurantes,
+.areaHoteles,
+.areaSalones {
+    position: relative;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: xx-large;
+}
+
+
+.areaRestaurantes,
+.areaHoteles,
+.areaSalones p {
+    font-weight: bold;
+}
+
+.areaRestaurantes {
+    background-color: rgb(249, 250, 223);
+    color: rgb(99, 74, 74);
+
+}
+
+.areaHoteles {
+    background-color: rgb(240, 252, 255);
+    color: rgb(99, 74, 74);
+}
+
+#hoteles {
+    flex-wrap: unset;
+    flex-direction: row;
+}
+
+.areaSalones {
+    background-color: rgb(253, 247, 255);
+    color: rgb(99, 74, 74);
+}
+
+#salones {
+    flex-wrap: unset;
+    flex-wrap: wrap;
+}
+
+.area h1 {
+    padding-top: 2%;
+}
+
+.areaOpciones {
+    margin: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: x-large;
+    align-items: center;
+    justify-content: center;
+}
+
+.item {
+    margin: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: column;
+    font-size: xx-large;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 700px;
+    ;
+}
+
+.item img {
+    width: 400px;
+    height: 400px;
+}
+
+#instagramicon {
+    width: 5%;
+    height: 5%;
+}
+
+.botonOpciones {
+    display: block;
+    width: fit-content;
+    background-color: #50c8ff;
+    color: #f8f8f8;
+    border: none;
+    cursor: pointer;
+    font-size: larger;
+    padding: 5%;
+
+}
+
+.botonOpciones :hover {
+    background-color: #00A7E1;
+}
+
+.botonOpciones a {
+    text-decoration: none;
+    color: #f8f8f8;
+    text-align: center;
+}
+
+/*Iphone 13X, Galaxy 23U*/
+@media screen and (max-width: 768px) {
+    .container {
+        width: fit-content;
+        position: fixed;
+        z-index: 5;
+        background-color: transparent;
+        padding: 5%;
+    }
+
+    .active {
+        width: fit-content;
+        height: fit-content;
+        background-color: rgba(56, 56, 56, 0.8);
+        
+        
+    }
+
+    .menu-icon {
+        display: block;
+        z-index: 2;
+        width: fit-content;
+    }
+
+
+    .set {
+        position: unset;
+    }
+
+    
+    .nav {
+        display: none;
+        position: relative;
+    }
+
+    .on {
+        display: flex;
+        height: 100%;
+    }
+
+    .open {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        color: #c0984f;
+        list-style: none;
+    }
+
+    .nav li {
+        padding: 0 20px;
+        margin-top: 20%;
+    }
+
+    .nav li a {
+        color: #c0984f;
+        font-size: 18px;
+    }
+    .nav ul{
+        display: unset;
+        align-items: unset;
+    }
+
+    .hero-text {
+        font-size: 2em;
+        letter-spacing: normal;
+        bottom: 10%;
+    }
+
+    .hero-text p {
+        font-size: 1.2em;
+    }
+
+    .icono {
+        max-width: 300px;
+    }
+
+    /*invitacion*/
+
+    .section {
+        font-size: large;
+    }
+
+    /*galeria de fotos*/
+    .photo-gallery img {
+        max-width: calc(100% - 20px);
+    }
+
+    /*como llegar*/
+    .comoLlegarArea {
+        margin-left: -2%;
+        margin-top: 10%;
+        align-items: center;
+    }
+
+    .comoLlegar-box {
+
+        height: max-content;
+        width: fit-content;
+        margin: 5%;
+        font-size: large;
+    }
+
+    /*cuantos dias faltan*/
+    .banner {
+        transform: scale(1.5) translate(0, 0);
+        padding-right: 50%;
+    }
+
+    .contador {
+        width: 90%;
+        top: 20%;
+    }
+
+    .contador h1 {
+        font-size: 2em;
+    }
+
+    .numeros {
+        font-size: 2em;
+
+    }
+
+    .unidades {
+        font-size: 1.5em;
+        padding-right: 5%;
+    }
+
+    /*mesa de regalos*/
+    .regalos-box {
+        font-size: large;
+        padding-top: 30%;
+        text-align: center;
+    }
+
+    /*forma de asistencia*/
+    .form-container h2 {
+        font-size: 2em;
+    }
+
+    .form-container label {
+        font-size: 1em;
+    }
+
+    /*mapas*/
+    .maps {
+        flex-flow: column;
+    }
+
+    .mapIglesia,
+    .mapRecepcion {
+        margin: 5%;
+        font-size: large;
+        padding-right: 20%;
+    }
+
+    .mapIglesia iframe,
+    .mapRecepcion iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+    /*Sugerencias*/
+    .areaRestaurantes,
+    .areaHoteles,
+    .areaSalones {
+        font-size: large;
+        position: relative;
+        height: fit-content;
+    }
+
+    #hoteles {
+        flex-direction: column;
+    }
+
+    .item {
+        max-width: 300px;
+    }
+
+    .item img {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* Ipads y Tablets*/
+@media screen and (min-width: 768px) and (max-width:1800px) {
+
+
+    /*barra de navegacion*/
+    .nav-list {
+        display: flex;
+        flex-direction: row;
+        max-width: calc(100% - 20px);
+    }
+
+
+    .hero-text {
+        font-size: 2em;
+        letter-spacing: normal;
+        bottom: 10%;
+    }
+
+    .hero-text p {
+        font-size: 1.2em;
+    }
+
+    /*invitacion*/
+
+    .section {
+        font-size: large;
+    }
+
+    /*galeria de fotos*/
+
+    .photo-gallery img {
+        max-width: calc(100% - 20px);
+    }
+
+    /*como llegar*/
+    .comoLlegarArea {
+
+        align-items: center;
+    }
+
+    .comoLlegar-box {
+
+        height: max-content;
+        width: fit-content;
+        margin: 5%;
+        font-size: large;
+    }
+
+    /*cuantos dias faltan*/
+    .banner {
+        transform: scale(2) translate(0, 0);
+        padding-right: 30%;
+    }
+
+    .contador {
+        width: 90%;
+        top: 20%;
+    }
+
+    .contador h1 {
+        font-size: 2em;
+    }
+
+    .numeros {
+        font-size: 2em;
+
+    }
+
+    .unidades {
+        font-size: 1.5em;
+        padding-right: 5%;
+    }
+
+    /*mesa de regalos*/
+    .regalos-box {
+        font-size: large;
+        padding-top: 30%;
+        text-align: center;
+    }
+
+    /*forma de asistencia*/
+    .form-container h2 {
+        font-size: 2em;
+    }
+
+    .form-container label {
+        font-size: 1em;
+    }
+
+    /*mapas*/
+    .maps {
+        flex-flow: column;
+    }
+
+    .mapIglesia,
+    .mapRecepcion {
+        margin: 5%;
+        font-size: large;
+        padding-right: 20%;
+    }
+
+    .mapIglesia iframe,
+    .mapRecepcion iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+    /*Sugerencias*/
+    .areaRestaurantes,
+    .areaHoteles,
+    .areaSalones {
+        font-size: large;
+        position: relative;
+        height: fit-content;
+    }
+
+    #hoteles {
+        flex-direction: column;
+    }
+
+    #hoteles .item .botonOpciones .item {
+        max-width: 300px;
+    }
+}

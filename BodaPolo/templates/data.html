@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSVP Data</title>
+</head>
+<body>
+    <h2>RSVP Data</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombre Completo</th>
+                <th>Asistirás al evento?</th>
+                <th>Contacto</th>
+                <th>¿Necesitas menú especial?</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rsvp in rsvps %}
+            <tr>
+                <td>{{ rsvp.full_name }}</td>
+                <td>{{ rsvp.attendance }}</td>
+                <td>{{ rsvp.contact }}</td>
+                <td>{{ rsvp.special_menu }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{{ url_for('download') }}">Download File</a>
+    <br>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
